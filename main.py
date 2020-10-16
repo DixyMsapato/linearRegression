@@ -105,7 +105,7 @@ def costFunction(X,y,theta):
 X = featureNormalise(X)
 y = trainingData[:,[0]]
 theta = numpy.zeros((X.shape[1],1))
-alpha = 0.03
+alpha = float(input('Please input a value for the learning rate.'))
 print(costFunction(X,y,theta))
 
 
