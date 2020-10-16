@@ -133,11 +133,11 @@ def gradientDescent(X,y,theta,alpha,num_iters):
     return theta
 t = gradientDescent(X,y,theta,alpha,1500)
 
+#Only makes plots for data with 1 feature
 Xplot = numpy.delete(X,0,1)
-print(Xplot.shape)
-print(y.shape)
-#Scatter plot of original data
-plt.scatter(Xplot,y)
-#Plot of hypothethis line of best fit
-plt.plot(Xplot, X.dot(t))
-plt.show()
+if (Xplot.shape[1]==1):
+    #Scatter plot of original data
+    plt.scatter(Xplot,y)
+    #Plot of hypothethis line of best fit
+    plt.plot(Xplot, X.dot(t))
+    plt.show()
