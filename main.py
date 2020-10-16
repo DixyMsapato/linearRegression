@@ -102,10 +102,10 @@ def costFunction(X,y,theta):
 
 #Normalise data
 
-
+X = featureNormalise(X)
 y = trainingData[:,[0]]
 theta = numpy.zeros((X.shape[1],1))
-alpha = 0.01
+alpha = 0.03
 print(costFunction(X,y,theta))
 
 
@@ -117,12 +117,9 @@ def gradientDescent(X,y,theta,alpha,num_iters):
     gradJ = numpy.zeros((numFeatures,1))
     temp = []
     for iters in range(0,num_iters):
-
-        for x in range(0,numFeatures):
-            temp = (X.dot(theta)-y)*(X[:,x].reshape(m,1))
-
-            gradJ[x] = numpy.sum(temp)
-        #print(gradJ)
+        #simultaneously update gradJ
+        gradJ = numpy.transpose(X).dot(((X.dot(theta)-y)))
+        #simulatenously update theta
         theta = theta - ((alpha / m) * gradJ)
         print('Iteration number:',iters)
         J_history[iters] = costFunction(X, y, theta)
@@ -133,11 +130,10 @@ def gradientDescent(X,y,theta,alpha,num_iters):
     return theta
 t = gradientDescent(X,y,theta,alpha,1500)
 
-#Only makes plots for data with 1 feature
 Xplot = numpy.delete(X,0,1)
 if (Xplot.shape[1]==1):
     #Scatter plot of original data
     plt.scatter(Xplot,y)
     #Plot of hypothethis line of best fit
-    plt.plot(Xplot, X.dot(t))
+    plt.plot(Xplot, X.dot(t),'r')
     plt.show()
