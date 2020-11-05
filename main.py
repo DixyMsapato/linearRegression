@@ -37,7 +37,7 @@ def getTrainingData():
 
             for line in data:
                 intLine = []
-                print(line)
+                #print(line)
                 counter = 0
                 # while loop which converts line into a line of float instead of str values
                 # we want float not into so that when we normalise, division by
@@ -105,8 +105,9 @@ def costFunction(X,y,theta):
 X = featureNormalise(X)
 y = trainingData[:,[0]]
 theta = numpy.zeros((X.shape[1],1))
-alpha = float(input('Please input a value for the learning rate.'))
-print(costFunction(X,y,theta))
+alpha = float(input('Please input a value for the learning rate : '))
+iterations = int(input('Please input the number of iterations for batch gradient descent : '))
+#print(costFunction(X,y,theta))
 
 
 def gradientDescent(X,y,theta,alpha,num_iters):
@@ -121,19 +122,21 @@ def gradientDescent(X,y,theta,alpha,num_iters):
         gradJ = numpy.transpose(X).dot(((X.dot(theta)-y)))
         #simulatenously update theta
         theta = theta - ((alpha / m) * gradJ)
-        print('Iteration number:',iters)
+        #print('Iteration number:',iters)
         J_history[iters] = costFunction(X, y, theta)
 
-    print('The cost function history',J_history)
-    print('Final values of theta', theta)
+    #print('The cost function history',J_history)
+    #print('Final values of theta', theta)
 
     return theta
-t = gradientDescent(X,y,theta,alpha,1500)
-
+t = gradientDescent(X,y,theta,alpha,iterations)
+#Removing the 1s for the Data corresponding to theta_{0}, x_{0} i.e bias unit
 Xplot = numpy.delete(X,0,1)
+
+x = numpy.linspace(numpy.amin(Xplot), numpy.amax(Xplot), Xplot.shape[0])
 if (Xplot.shape[1]==1):
     #Scatter plot of original data
     plt.scatter(Xplot,y)
     #Plot of hypothethis line of best fit
-    plt.plot(Xplot, X.dot(t),'r')
+    plt.plot(x, t[1]*x+t[0],'r')
     plt.show()
