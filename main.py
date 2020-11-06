@@ -123,7 +123,7 @@ def gradientDescent(X,y,theta,alpha,num_iters):
         #simulatenously update theta
         theta = theta - ((alpha / m) * gradJ)
         #print('Iteration number:',iters)
-        J_history[iters] = costFunction(X, y, theta)
+        #J_history[iters] = costFunction(X, y, theta)
 
     #print('The cost function history',J_history)
     #print('Final values of theta', theta)
