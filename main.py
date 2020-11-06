@@ -97,7 +97,7 @@ def costFunction(X,y,theta):
     #m = number of training examples i.e length(y)
     #add code checking dimensions MATCH ***HERE****
     m = y.shape[0]
-    J = (1 / (2 * m)) * numpy.sum((numpy.square(X.dot(theta) - y)));
+    J = (1 / (2 * m)) * (numpy.square(X.dot(theta) - y));
     return J
 
 #Normalise data
