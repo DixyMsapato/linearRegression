@@ -97,7 +97,7 @@ def costFunction(X,y,theta):
     #m = number of training examples i.e length(y)
     #add code checking dimensions MATCH ***HERE****
     m = y.shape[0]
-    J = (1 / (2 * m)) * numpy.sum((numpy.square(X.dot(theta) - y)));
+    J = (1 / (2 * m)) * (numpy.square(X.dot(theta) - y));
     return J
 
 #Normalise data
@@ -123,7 +123,7 @@ def gradientDescent(X,y,theta,alpha,num_iters):
         #simulatenously update theta
         theta = theta - ((alpha / m) * gradJ)
         #print('Iteration number:',iters)
-        J_history[iters] = costFunction(X, y, theta)
+        #J_history[iters] = costFunction(X, y, theta)
 
     #print('The cost function history',J_history)
     #print('Final values of theta', theta)
